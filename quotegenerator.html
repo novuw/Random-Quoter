@@ -1,0 +1,74 @@
+<head>
+    <meta charset="utf-8"/>
+</head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var dataFull = [];
+    $(document).ready(function(){
+            var urlAPI = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=mycallback";
+
+            $(".btn-xL").on("click", function(){
+                $.ajax({
+                    url: urlAPI,
+                    dataType: "jsonp",
+                    //data: "",
+                    success: function(json){
+                        dataFull.push(json);
+                        alert("Success!");
+                    },
+                    error: function(json){
+                        alert("error");
+                    }
+                });
+                $("h4").html(dataFull);
+            });
+        });
+</script>
+<style>
+h1 {
+    color: #000000;
+    font-family: Tangerine;
+    font-size: 100;
+    text-shadow: 4px 2px #a6a6a6;
+}
+h2{
+    color: #0000000;
+    font-family: Tangerine;
+    font-size: 100;
+}
+body{
+    background-image: url(https://www.motiongraphicstock.com/assets/images/jpg/5557ec270193e.jpg);
+}
+.btn-xl{
+    padding: 18px 28px;
+    font-size: 22px;
+    border-radius: 8px;
+    border: solid black;
+}
+.container-fluid{
+    box-shadow: 0px 8px 8px 0px #b3b3b3;
+    width: 100px;
+}
+
+
+
+</style>
+<div>
+    <title>Random Quoter</title>
+    <body>
+        <div id="headline" style="text-align: center">
+        <b><h1 class="center">Random Quotes Rewritten</hi></b>
+        </div>
+        <div style="text-align: center">
+            <h2>Here are some quotes about stoic philosophy.</h2>
+        </div>
+        <div>
+            <button class="btn-xl center-block" style="font-family: Tangerine; background-color: #145214"><b style="color: #ffffff">New Quote</b></button>
+        </div>
+        <div class="container-fluid" style="background-color: #ffffff; text-align: center; border-radius: 8px; border-">
+            <h4>change me</h4>
+        </div>
+    </body>
+</div>
