@@ -7,24 +7,34 @@
 <script type="text/javascript">
 var dataFull = [];
     $(document).ready(function(){
-            var urlAPI = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=mycallback";
-
             $(".btn-xL").on("click", function(){
                 $.ajax({
-                    url: urlAPI,
+                    url: "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?",
                     dataType: "jsonp",
-                    //data: "",
-                    success: function(json){
-                        dataFull.push(json);
-                        alert("Success!");
+                    type: "GET",
+                    success: function(jsonp){
+                        $("h4").html(jsonp.quoteText);
+                        if (jsonp.quoteAuthor == ""){
+                            $("h5").html('-' + "Unknown");
+                        } else{
+                            $("h5").html('-' + jsonp.quoteAuthor);
+                        }
                     },
                     error: function(json){
                         alert("error");
                     }
                 });
-                $("h4").html(dataFull);
             });
         });
+
+
+//BELOW IS FOR TWITTER API
+{text: jsonp.quoteText,
+ user: {
+     name:
+ }
+}
+
 </script>
 <style>
 h1 {
@@ -39,12 +49,13 @@ h2{
     font-size: 100;
 }
 body{
-    background-image: url(https://www.motiongraphicstock.com/assets/images/jpg/5557ec270193e.jpg);
+    background-image: url(http://www.4usky.com/data/out/40/164345010-green-wallpapers.jpg);
 }
+
 .btn-xl{
     padding: 18px 28px;
-    font-size: 22px;
-    border-radius: 8px;
+    font-size: 16px;
+    border-radius: 6px;
     border: solid black;
 }
 .container-fluid{
@@ -62,13 +73,14 @@ body{
         <b><h1 class="center">Random Quotes Rewritten</hi></b>
         </div>
         <div style="text-align: center">
-            <h2>Here are some quotes about stoic philosophy.</h2>
+            <h2>Here are some quotes about life.</h2>
         </div>
         <div>
             <button class="btn-xl center-block" style="font-family: Tangerine; background-color: #145214"><b style="color: #ffffff">New Quote</b></button>
         </div>
-        <div class="container-fluid" style="background-color: #ffffff; text-align: center; border-radius: 8px; border-">
-            <h4>change me</h4>
+        <div style="text-align: center">
+            <h4></h4>
+            <h5></h5>
         </div>
     </body>
 </div>
