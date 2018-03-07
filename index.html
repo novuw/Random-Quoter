@@ -29,19 +29,20 @@
                     dataType: "jsonp",
                     type: "GET",
                     success: function(jsonp){
+                        var quoteText = jsonp.quoteText.replace(" ", "%20");
+                        var twitterLink = "https://twitter.com/intent/tweet?text="
+                        $("a").attr("href", twitterLink + quoteText);
                         $("h4").html(jsonp.quoteText);
                         if (jsonp.quoteAuthor == ""){
                             $("h5").html('-' + "Unknown");
                         } else{
                             $("h5").html('-' + jsonp.quoteAuthor);
                         }
-                        $("a").attr("href", "https://twitter.com/intent/tweet?text=" + jsonp.quoteText);
                     },
                     error: function(json){
                         alert("error");
                     }
                 });
-
             });
         });
 </script>
