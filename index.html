@@ -4,8 +4,24 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
 <script type="text/javascript">
-var dataFull = [];
     $(document).ready(function(){
             $(".btn-xL").on("click", function(){
                 $.ajax({
@@ -19,17 +35,12 @@ var dataFull = [];
                         } else{
                             $("h5").html('-' + jsonp.quoteAuthor);
                         }
+                        $("a").attr("href", "https://twitter.com/intent/tweet?text=" + jsonp.quoteText.);
                     },
                     error: function(json){
                         alert("error");
                     }
                 });
-            });
-            $("#tweet").on("click", function(){
-
-
-
-
 
             });
         });
@@ -61,11 +72,7 @@ body{
     width: 100px;
 }
 #tweet{
-
 }
-
-
-
 </style>
 <div>
     <title>Random Quoter</title>
@@ -84,7 +91,7 @@ body{
             <h5 style="color: white"></h5>
         </div>
         <div>
-            <button id="tweet" class="center-block btn" style="font-family: Tangerine; font-size: 20; background-color: #0084b4"><b style="color: #ffffff">Tweet It!<img src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c53e.png" height="30" width="30"></b></button>
+            <center><a class="twitter-share-button" href="" +  data-size="large">Tweet</a></center>
         </div>
     </body>
 </div>
