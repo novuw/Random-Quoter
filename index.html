@@ -1,0 +1,97 @@
+<head>
+    <meta charset="utf-8"/>
+</head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+            $(".btn-xL").on("click", function(){
+                $.ajax({
+                    url: "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?",
+                    dataType: "jsonp",
+                    type: "GET",
+                    success: function(jsonp){
+                        $("h4").html(jsonp.quoteText);
+                        if (jsonp.quoteAuthor == ""){
+                            $("h5").html('-' + "Unknown");
+                        } else{
+                            $("h5").html('-' + jsonp.quoteAuthor);
+                        }
+                        $("a").attr("href", "https://twitter.com/intent/tweet?text=" + jsonp.quoteText);
+                    },
+                    error: function(json){
+                        alert("error");
+                    }
+                });
+
+            });
+        });
+</script>
+<style>
+h1 {
+    color: #ffffff;
+    font-family: Tangerine;
+    font-size: 100;
+    text-shadow: 4px 2px #a6a6a6;
+}
+h2{
+    color: #ffffff;
+    font-family: Tangerine;
+    font-size: 100;
+}
+body{
+    background-image: url(https://i.imgur.com/tcDwdJy.jpg);
+}
+
+.btn-xl{
+    padding: 18px 28px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: solid black;
+}
+.container-fluid{
+    box-shadow: 0px 8px 8px 0px #b3b3b3;
+    width: 100px;
+}
+#tweet{
+}
+</style>
+<div>
+    <title>Random Quoter</title>
+    <body>
+        <div id="headline" style="text-align: center">
+        <b><h1 class="center">Random Quotes Rewritten</hi></b>
+        </div>
+        <div style="text-align: center">
+            <h2>Here are some quotes about life.</h2>
+        </div>
+        <div>
+            <button class="btn-xL center-block" style="font-family: Tangerine; background-color: #145214"><b style="color: #ffffff">New Quote</b></button>
+        </div>
+        <div style="text-align: center">
+            <h4 style="color: white"></h4>
+            <h5 style="color: white"></h5>
+        </div>
+        <div>
+            <center><a class="twitter-share-button" href="" +  data-size="large">Tweet</a></center>
+        </div>
+    </body>
+</div>
